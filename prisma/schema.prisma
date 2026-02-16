@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  role          String    @default("user")
+  organization  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  analyses      Analysis[]
+  reports       Report[]
+  preferences   UserPreferences?
+}
+
+model UserPreferences {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme     String   @default("light")
+  language  String   @default("uz")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Region {
+  id          String   @id
+  name        String   @unique
+  nameUz      String
+  nameRu      String?
+  code        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  districts   District[]
+  analyses    Analysis[]
+}
+
+model District {
+  id          String   @id @default(cuid())
+  name        String
+  nameUz      String
+  region      Region   @relation(fields: [regionId], references: [id])
+  regionId    String
+  population  Int
+  area        Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  indicators  IndicatorValue[]
+  
+  @@unique([name, regionId])
+}
+
+model Indicator {
+  id          String   @id
+  name        String
+  nameUz      String
+  unit        String
+  category    String
+  direction   String
+  weight      Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  values      IndicatorValue[]
+}
+
+model IndicatorValue {
+  id          String   @id @default(cuid())
+  district    District @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  districtId  String
+  indicator   Indicator @relation(fields: [indicatorId], references: [id])
+  indicatorId String
+  value       Float
+  year        Int
+  verified    Boolean  @default(false)
+  source      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([districtId, indicatorId, year])
+}
+
+model Analysis {
+  id              String   @id @default(cuid())
+  name            String
+  region          Region   @relation(fields: [regionId], references: [id])
+  regionId        String
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String
+  year            Int
+  
+  giniCoefficient Float
+  coefficientOfVariation Float
+  theilIndex      Float
+  decileRatio     Float
+  
+  clusterAllocation Json
+  silhouetteScore Float
+  
+  avgCompositeIndex Float
+  maxCompositeIndex Float
+  minCompositeIndex Float
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  recommendations Recommendation[]
+  reports         Report[]
+}
+
+model Recommendation {
+  id              String   @id @default(cuid())
+  analysis        Analysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+  analysisId      String
+  
+  action          String
+  expectedResult  String
+  timeline        String
+  budgetEstimate  String
+  priority        String
+  category        String
+  
+  successMetrics  Json
+  implementationSteps Json
+  riskFactors     Json
+  bestPractices   Json?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Report {
+  id              String   @id @default(cuid())
+  analysis        Analysis @relation(fields: [analysisId], references: [id])
+  analysisId      String
+  user            User     @relation(fields: [userId], references: [id])
+  userId          String
+  
+  title           String
+  reportType      String
+  format          String
+  language        String  @default("uz")
+  
+  fileUrl         String
+  fileSize        Int
+  generatedAt     DateTime
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model AuditLog {
+  id              String   @id @default(cuid())
+  action          String
+  entity          String
+  entityId        String
+  userId          String?
+  details         Json?
+  ipAddress       String?
+  userAgent       String?
+  createdAt       DateTime @default(now())
+}

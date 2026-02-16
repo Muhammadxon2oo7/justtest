@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ҳудудий тенгсизлик таҳлили - Ҳоразм вилояти</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #159895;
+            --accent-color: #57c5b6;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            max-width: 1400px;
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+        
+        .header-section h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid var(--accent-color);
+            padding: 0 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+        
+        .nav-tabs .nav-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            padding: 15px 20px;
+            white-space: nowrap;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .tab-content {
+            padding: 25px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: 600;
+            padding: 15px 20px;
+        }
+        
+        .indicator-group {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .indicator-group h5 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .form-control {
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(87, 197, 182, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            font-weight: 600;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8, #6f42c1);
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        
+        .result-card .value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .result-card .label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .table thead {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .table thead th {
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .cluster-card {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cluster-header-1 { background: linear-gradient(135deg, #28a745, #20c997); color: white; }
+        .cluster-header-2 { background: linear-gradient(135deg, #17a2b8, #0dcaf0); color: white; }
+        .cluster-header-3 { background: linear-gradient(135deg, #ffc107, #fd7e14); color: #333; }
+        .cluster-header-4 { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
+        
+        .cluster-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: white;
+            margin: 2px;
+        }
+        
+        .cluster-1 { background: #28a745; }
+        .cluster-2 { background: #17a2b8; }
+        .cluster-3 { background: #ffc107; color: #333; }
+        .cluster-4 { background: #dc3545; }
+        
+        .recommendation-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .recommendation-card.economic { border-left-color: #28a745; }
+        .recommendation-card.social { border-left-color: #17a2b8; }
+        .recommendation-card.demographic { border-left-color: #ffc107; }
+        .recommendation-card.infrastructure { border-left-color: #dc3545; }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .district-input {
+            margin-bottom: 8px;
+        }
+        
+        .district-label {
+            font-weight: 500;
+            color: #333;
+            font-size: 0.75rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+        
+        .year-selector {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .strategy-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .strategy-icon.economic { background: #28a745; }
+        .strategy-icon.social { background: #17a2b8; }
+        .strategy-icon.demographic { background: #6f42c1; }
+        .strategy-icon.infrastructure { background: #fd7e14; }
+        
+        @media print {
+            .no-print { display: none !important; }
+            .main-container { box-shadow: none; margin: 0; }
+            body { background: white; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-section h1 { font-size: 1.3rem; }
+            .result-card .value { font-size: 1.5rem; }
+            .tab-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="text-center text-white">
+            <div class="loading-spinner mb-3"></div>
+            <h4>Таҳлил бажарилмоқда...</h4>
+        </div>
+    </div>
+
+    <div class="container-fluid main-container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1><i class="bi bi-graph-up-arrow"></i> ҲУДУДИЙ ТЕНГСИЗЛИК ТАҲЛИЛИ</h1>
+            <p class="mb-0">Ҳоразм вилояти туманлари ижтимоий-иқтисодий ривожланиш даражасини баҳолаш</p>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs no-print" id="mainTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#inputSection">
+                    <i class="bi bi-input-cursor-text"></i> Маълумот киритиш
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#resultsSection">
+                    <i class="bi bi-bar-chart-fill"></i> Натижалар
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#clusterSection">
+                    <i class="bi bi-diagram-3-fill"></i> Кластерлар
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#strategySection">
+                    <i class="bi bi-lightbulb-fill"></i> Тавсиялар
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#helpSection">
+                    <i class="bi bi-question-circle"></i> Йўриқнома
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            
+            <!-- ==================== INPUT SECTION ==================== -->
+            <div class="tab-pane fade show active" id="inputSection">
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="year-selector">
+                            <label class="form-label fw-bold"><i class="bi bi-calendar3"></i> Таҳлил йили:</label>
+                            <select class="form-select" id="analysisYear">
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024" selected>2024</option>
+                                <option value="2025">2025</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="year-selector">
+                            <label class="form-label fw-bold"><i class="bi bi-lightning-fill"></i> Тезкор амаллар:</label>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <button class="btn btn-warning" onclick="loadSampleData()">
+                                    <i class="bi bi-database-fill"></i> Намунавий маълумотлар
+                                </button>
+                                <button class="btn btn-info" onclick="clearAllData()">
+                                    <i class="bi bi-trash"></i> Тозалаш
+                                </button>
+                                <button class="btn btn-success" onclick="runAnalysis()">
+                                    <i class="bi bi-play-circle-fill"></i> ТАҲЛИЛНИ БОШЛАШ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicator Forms -->
+                <div id="indicatorForms"></div>
+
+                <div class="text-center mt-4 no-print">
+                    <button class="btn btn-primary btn-lg" onclick="runAnalysis()">
+                        <i class="bi bi-play-circle-fill"></i> ТАҲЛИЛНИ БОШЛАШ
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==================== RESULTS SECTION ==================== -->
+            <div class="tab-pane fade" id="resultsSection">
+                <div id="resultsContent">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> Натижаларни кўриш учун аввал маълумотларни киритинг ва "Таҳлилни бошлаш" тугмасини босинг.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== CLUSTER SECTION ==================== -->
+            <div class="tab-pane fade" id="clusterSection">
+                <div id="clusterContent">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> Кластер таҳлили натижаларини кўриш учун аввал таҳлилни бажаринг.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== STRATEGY SECTION ==================== -->
+            <div class="tab-pane fade" id="strategySection">
+                <div id="strategyContent">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> Стратегик тавсияларни кўриш учун аввал таҳлилни бажаринг.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== HELP SECTION ==================== -->
+            <div class="tab-pane fade" id="helpSection">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="bi bi-book"></i> Тенгсизлик кўрсаткичлари
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-sm">
+                                    <tr><td><strong>CV</strong></td><td>Вариация коэффициенти (< 20% паст, 20-35% ўртача, > 35% юқори)</td></tr>
+                                    <tr><td><strong>Жини</strong></td><td>0 дан 1 гача. Юқори = кўп тенгсизлик</td></tr>
+                                    <tr><td><strong>Тейл</strong></td><td>Энтропияга асосланган ўлчов</td></tr>
+                                    <tr><td><strong>Децил</strong></td><td>D9/D1 нисбати</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="bi bi-diagram-3"></i> Кластерлар тавсифи
+                            </div>
+                            <div class="card-body">
+                                <p><span class="cluster-badge cluster-1">Кластер 1</span> Юқори ривожланган (индекс: 0.70-1.00)</p>
+                                <p><span class="cluster-badge cluster-2">Кластер 2</span> Ўртача юқори (индекс: 0.50-0.70)</p>
+                                <p><span class="cluster-badge cluster-3">Кластер 3</span> Ўртача паст (индекс: 0.35-0.50)</p>
+                                <p><span class="cluster-badge cluster-4">Кластер 4</span> Паст ривожланган (индекс: 0.00-0.35)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="bi bi-list-check"></i> Индикаторлар рўйхати (4 йўналиш × 5 индикатор = 20 та)
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6 class="text-success"><i class="bi bi-currency-dollar"></i> ИҚТИСОДИЙ</h6>
+                                <small>E1: Саноат маҳсулоти<br>E2: Инвестициялар<br>E3: Кичик бизнес<br>E4: Чакана савдо<br>E5: Қ/х маҳсулоти</small>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-info"><i class="bi bi-people-fill"></i> ИЖТИМОИЙ</h6>
+                                <small>S1: Даромад<br>S2: Уй-жой<br>S3: Ишсизлик<br>S4: Хизматлар<br>S5: Истеъмол</small>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-purple"><i class="bi bi-person-lines-fill"></i> ДЕМОГРАФИК</h6>
+                                <small>D1: Аҳоли сони<br>D2: Туғилиш<br>D3: Ўлим<br>D4: Табиий ўсиш<br>D5: Меҳнат ресурслари</small>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="text-warning"><i class="bi bi-building"></i> ИНФРАТУЗИЛМА</h6>
+                                <small>I1: Шифохоналар<br>I2: Врачлар<br>I3: Мактаблар<br>I4: МТТ қамрови<br>I5: Ичимлик суви</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // =====================================================
+        // КОНФИГУРАЦИЯ
+        // =====================================================
+        
+        const DISTRICTS = [
+            "Урганч шаҳри", "Хива шаҳри", "Боғот тумани", "Гурлан тумани",
+            "Хазорасп тумани", "Хонқа тумани", "Хива тумани", "Қўшкўпир тумани",
+            "Шовот тумани", "Урганч тумани", "Янгиариқ тумани", "Янгибозор тумани",
+            "Тупроққалъа тумани"
+        ];
+
+        const INDICATORS = {
+            "ИҚТИСОДИЙ": {
+                "E1": {name: "Аҳоли жон бошига саноат маҳсулоти", unit: "минг сўм"},
+                "E2": {name: "Асосий капиталга инвестициялар", unit: "млн сўм"},
+                "E3": {name: "Кичик бизнес субъектлари сони", unit: "бирлик"},
+                "E4": {name: "Чакана савдо айланмаси", unit: "млн сўм"},
+                "E5": {name: "Қишлоқ хўжалиги маҳсулоти", unit: "млн сўм"}
+            },
+            "ИЖТИМОИЙ": {
+                "S1": {name: "Аҳолининг ўртача ойлик даромади", unit: "минг сўм"},
+                "S2": {name: "Уй-жой билан таъминланиш", unit: "м²/киши"},
+                "S3": {name: "Ишсизлик даражаси", unit: "%", reverse: true},
+                "S4": {name: "Кўрсатилган хизматлар ҳажми", unit: "млн сўм"},
+                "S5": {name: "Истеъмол харажатлари", unit: "минг сўм"}
+            },
+            "ДЕМОГРАФИК": {
+                "D1": {name: "Аҳоли сони", unit: "минг киши"},
+                "D2": {name: "Туғилиш коэффициенти", unit: "‰"},
+                "D3": {name: "Ўлим коэффициенти", unit: "‰", reverse: true},
+                "D4": {name: "Табиий ўсиш", unit: "‰"},
+                "D5": {name: "Меҳнатга лаёқатли аҳоли улуши", unit: "%"}
+            },
+            "ИНФРАТУЗИЛМА": {
+                "I1": {name: "10000 аҳолига шифохона кўйкалари", unit: "бирлик"},
+                "I2": {name: "10000 аҳолига врачлар сони", unit: "киши"},
+                "I3": {name: "Умумтаълим мактаблари сони", unit: "бирлик"},
+                "I4": {name: "Мактабгача таълим қамрови", unit: "%"},
+                "I5": {name: "Ичимлик суви билан таъминланиш", unit: "%"}
+            }
+        };
+
+        const DIRECTION_ICONS = {
+            "ИҚТИСОДИЙ": "bi-currency-dollar",
+            "ИЖТИМОИЙ": "bi-people-fill",
+            "ДЕМОГРАФИК": "bi-person-lines-fill",
+            "ИНФРАТУЗИЛМА": "bi-building"
+        };
+
+        const DIRECTION_COLORS = {
+            "ИҚТИСОДИЙ": "#28a745",
+            "ИЖТИМОИЙ": "#17a2b8",
+            "ДЕМОГРАФИК": "#6f42c1",
+            "ИНФРАТУЗИЛМА": "#fd7e14"
+        };
+
+        // =====================================================
+        // СТРАТЕГИК ТАВСИЯЛАР БАЗАСИ
+        // =====================================================
+        
+        const STRATEGIC_RECOMMENDATIONS = {
+            1: { // Кластер 1 - Юқори ривожланган
+                title: "ЮҚОРИ РИВОЖЛАНГАН ТУМАНЛАР",
+                indexRange: "0.70 - 1.00",
+                color: "#28a745",
+                characteristics: [
+                    "Юқори саноат ва хизматлар салоҳияти",
+                    "Яхши инфратузилма",
+                    "Юқори даромад даражаси",
+                    "Вилоят маркази ва шаҳарлар"
+                ],
+                recommendations: {
+                    economic: [
+                        {action: "Инновацион кластерлар ва технопаркларни ривожлантириш", result: "Юқори қўшимча қийматли маҳсулотлар ишлаб чиқариш"},
+                        {action: "Қўшни туманларга инвестиция оқимини йўналтириш механизмларини яратиш", result: "Ҳудудий тенгсизликни камайтириш"},
+                        {action: "Экспортга йўналтирилган ишлаб чиқаришни кўпайтириш", result: "Валюта тушуми ва иш ўринлари"}
+                    ],
+                    social: [
+                        {action: "Юқори малакали кадрлар тайёрлаш марказларини ташкил этиш", result: "Бутун вилоят учун кадрлар базаси"},
+                        {action: "Илмий-тадқиқот марказларини қуриш", result: "Инновацион ривожланиш"}
+                    ],
+                    demographic: [
+                        {action: "Ички миграцияни бошқариш, атроф туманларда иш ўринлари яратиш", result: "Аҳоли тўпланишини камайтириш"},
+                        {action: "Шаҳар атрофида янги аҳоли пунктларини режалаштириш", result: "Мувозанатли ривожланиш"}
+                    ],
+                    infrastructure: [
+                        {action: "Транспорт-логистика марказлари қуриш", result: "Атроф туманларни ҳам қамраб олиш"},
+                        {action: "Рақамли инфратузилмани ривожлантириш", result: "IT хизматлар маркази"}
+                    ]
+                }
+            },
+            2: { // Кластер 2 - Ўртача юқори
+                title: "ЎРТАЧА ЮҚОРИ РИВОЖЛАНГАН ТУМАНЛАР",
+                indexRange: "0.50 - 0.70",
+                color: "#17a2b8",
+                characteristics: [
+                    "Ўртачадан юқори иқтисодий кўрсаткичлар",
+                    "Қишлоқ хўжалиги ва саноат аралаш",
+                    "Ривожланиш салоҳияти юқори",
+                    "Инфратузилмада айрим камчиликлар"
+                ],
+                recommendations: {
+                    economic: [
+                        {action: "Қишлоқ хўжалиги маҳсулотларини қайта ишлаш корхоналарини кўпайтириш", result: "Қўшимча қиймат ва иш ўринлари"},
+                        {action: "Кичик бизнес учун имтиёзли кредит линиялари очиш", result: "Тадбиркорлик фаоллигини ошириш"},
+                        {action: "Саноат зоналарини ташкил этиш", result: "Инвестицияларни жалб қилиш"}
+                    ],
+                    social: [
+                        {action: "Касб-ҳунар таълими марказларини кенгайтириш", result: "Малакали ишчи кучи"},
+                        {action: "Соғлиқни сақлаш хизматлари сифатини ошириш", result: "Аҳоли саломатлигини яхшилаш"}
+                    ],
+                    demographic: [
+                        {action: "Ёшлар учун уй-жой дастурлари", result: "Ёшларни туманда ушлаб қолиш"},
+                        {action: "Оилавий тадбиркорликни қўллаб-қувватлаш", result: "Барқарор даромад манбаи"}
+                    ],
+                    infrastructure: [
+                        {action: "Йўл инфратузилмасини яхшилаш", result: "Бозорларга чиқиш имконияти"},
+                        {action: "Электр таъминоти ишончлилигини ошириш", result: "Ишлаб чиқариш барқарорлиги"}
+                    ]
+                }
+            },
+            3: { // Кластер 3 - Ўртача паст
+                title: "ЎРТАЧА ПАСТ РИВОЖЛАНГАН ТУМАНЛАР",
+                indexRange: "0.35 - 0.50",
+                color: "#ffc107",
+                characteristics: [
+                    "Қишлоқ хўжалигига юқори боғлиқлик",
+                    "Инфратузилма етарли эмас",
+                    "Ишсизлик даражаси ўртачадан юқори",
+                    "Ёшлар миграцияси муаммоси"
+                ],
+                recommendations: {
+                    economic: [
+                        {action: "Қишлоқ хўжалигини диверсификация қилиш (интенсив боғдорчилик, иссиқхоналар)", result: "Даромадни ошириш, мавсумийликни камайтириш"},
+                        {action: "Агротуризм ва қишлоқ туризмини ривожлантириш", result: "Қўшимча даромад манбаи"},
+                        {action: "Ҳунармандчиликни тиклаш ва ривожлантириш", result: "Анъанавий касблар ва туризм"}
+                    ],
+                    social: [
+                        {action: "Масофавий таълим ва телемедицина хизматларини жорий этиш", result: "Хизматларга қулай кириш"},
+                        {action: "Ижтимоий контракт дастурларини кенгайтириш", result: "Камбағалликни қисқартириш"},
+                        {action: "Аёллар бандлигини оширувчи дастурлар", result: "Оила даромадини кўпайтириш"}
+                    ],
+                    demographic: [
+                        {action: "Маҳаллий иш ўринлари яратиш дастурлари", result: "Миграцияни камайтириш"},
+                        {action: "Ёш мутахассисларни жалб қилиш учун рағбатлар", result: "Кадрлар салоҳиятини ошириш"}
+                    ],
+                    infrastructure: [
+                        {action: "Ичимлик суви ва канализация тизимларини яхшилаш", result: "Турмуш сифатини ошириш"},
+                        {action: "Мактабгача таълим муассасаларини кўпайтириш", result: "Аёллар бандлигини ошириш"},
+                        {action: "Йўл ва транспорт алоқасини яхшилаш", result: "Бозорларга чиқиш"}
+                    ]
+                }
+            },
+            4: { // Кластер 4 - Паст ривожланган
+                title: "ПАСТ РИВОЖЛАНГАН ТУМАНЛАР",
+                indexRange: "0.00 - 0.35",
+                color: "#dc3545",
+                characteristics: [
+                    "Энг паст иқтисодий кўрсаткичлар",
+                    "Инфратузилма жуда заиф",
+                    "Юқори ишсизлик ва камбағаллик",
+                    "Чекка ҳудудлар, транспорт муаммолари"
+                ],
+                recommendations: {
+                    economic: [
+                        {action: "Давлат мақсадли дастурлари ва субсидиялар орқали қўллаб-қувватлаш", result: "Базавий иқтисодий ривожланиш"},
+                        {action: "Маҳаллий хом ашёга асосланган кичик ишлаб чиқаришни ташкил этиш", result: "Иш ўринлари яратиш"},
+                        {action: "Кооператив хўжаликларни ташкил этиш", result: "Масштаб самарадорлиги"},
+                        {action: "Микрокредит дастурларини кенгайтириш", result: "Кичик тадбиркорликни қўллаб-қувватлаш"}
+                    ],
+                    social: [
+                        {action: "Ижтимоий ёрдам дастурларини кучайтириш", result: "Камбағалликни юмшатиш"},
+                        {action: "Мобил тиббий хизматларни ташкил этиш", result: "Соғлиқни сақлаш хизматларига кириш"},
+                        {action: "Касб-ҳунар ўргатиш курсларини ташкил этиш", result: "Бандликни ошириш"},
+                        {action: "Мактаб ўқувчилари учун бепул овқатланиш", result: "Болалар саломатлиги"}
+                    ],
+                    demographic: [
+                        {action: "Ёш мутахассислар учун уй-жой ва рағбатлантириш дастурлари", result: "Кадрларни жалб қилиш"},
+                        {action: "Оилавий тадбиркорликни қўллаб-қувватлаш", result: "Оилаларни ушлаб қолиш"},
+                        {action: "Репродуктив соғлиқ хизматларини яхшилаш", result: "Оналар ва болалар саломатлиги"}
+                    ],
+                    infrastructure: [
+                        {action: "Асосий инфратузилмани барпо этиш (йўллар, электр, сув)", result: "Базавий шароитларни яратиш"},
+                        {action: "Интернет ва мобил алоқани кенгайтириш", result: "Рақамли хизматларга кириш"},
+                        {action: "Мактаб биноларини таъмирлаш ва жиҳозлаш", result: "Таълим сифатини ошириш"},
+                        {action: "Фельдшер-акушерлик пунктларини қуриш", result: "Тиббий хизматларга кириш"}
+                    ]
+                }
+            }
+        };
+
+        // Умумвилоят тавсиялари
+        const REGIONAL_RECOMMENDATIONS = [
+            {title: "Ҳудудий тенглаштириш фонди", desc: "Юқори ривожланган туманлардан паст ривожланганларга маблағ йўналтириш"},
+            {title: "Кластерлараро ҳамкорлик", desc: "Ривожланган туманларнинг паст ривожланганлар билан шериклик дастурлари"},
+            {title: "Дифференциал солиқ сиёсати", desc: "Паст ривожланган туманларда солиқ имтиёзлари"},
+            {title: "Инфратузилма тенглаштириш", desc: "Паст ривожланган туманларда инфратузилмага устувор инвестиция"},
+            {title: "Кадрлар алмашинуви", desc: "Юқори малакали кадрларни паст ривожланган туманларга жалб қилиш механизмлари"}
+        ];
+
+        // =====================================================
+        // ФОРМА ЯРАТИШ
+        // =====================================================
+        
+        function generateForms() {
+            let html = '';
+            
+            for (const [direction, indicators] of Object.entries(INDICATORS)) {
+                html += `
+                    <div class="indicator-group">
+                        <h5><i class="bi ${DIRECTION_ICONS[direction]}" style="color: ${DIRECTION_COLORS[direction]}"></i> ${direction} КЎРСАТКИЧЛАР</h5>
+                `;
+                
+                for (const [code, info] of Object.entries(indicators)) {
+                    html += `
+                        <div class="card mb-3">
+                            <div class="card-header py-2">
+                                <strong>${code}</strong>: ${info.name} <small class="text-light">(${info.unit})</small>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="row">
+                    `;
+                    
+                    for (const district of DISTRICTS) {
+                        html += `
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-6 district-input">
+                                <label class="district-label">${district}</label>
+                                <input type="number" class="form-control form-control-sm indicator-input" 
+                                       data-indicator="${code}" 
+                                       data-district="${district}"
+                                       placeholder="0" step="0.01">
+                            </div>
+                        `;
+                    }
+                    
+                    html += `
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                html += `</div>`;
+            }
+            
+            document.getElementById('indicatorForms').innerHTML = html;
+        }
+
+        // =====================================================
+        // СТАТИСТИК ФУНКЦИЯЛАР
+        // =====================================================
+        
+        function mean(arr) {
+            return arr.reduce((a, b) => a + b, 0) / arr.length;
+        }
+        
+        function std(arr) {
+            const m = mean(arr);
+            return Math.sqrt(arr.reduce((acc, val) => acc + Math.pow(val - m, 2), 0) / (arr.length - 1));
+        }
+        
+        function calculateCV(values) {
+            const m = mean(values);
+            const s = std(values);
+            return m !== 0 ? (s / m) * 100 : 0;
+        }
+        
+        function calculateGini(values) {
+            const sorted = [...values].sort((a, b) => a - b);
+            const n = sorted.length;
+            const sum = sorted.reduce((a, b) => a + b, 0);
+            if (sum === 0) return 0;
+            
+            let giniSum = 0;
+            for (let i = 0; i < n; i++) {
+                giniSum += (2 * (i + 1) - n - 1) * sorted[i];
+            }
+            return giniSum / (n * sum);
+        }
+        
+        function calculateTheil(values) {
+            const m = mean(values);
+            if (m === 0) return 0;
+            
+            const positiveValues = values.filter(v => v > 0);
+            if (positiveValues.length === 0) return 0;
+            
+            const n = positiveValues.length;
+            let sum = 0;
+            for (const v of positiveValues) {
+                sum += (v / m) * Math.log(v / m);
+            }
+            return sum / n;
+        }
+        
+        function calculateDecile(values) {
+            const sorted = [...values].sort((a, b) => a - b);
+            const d1Index = Math.floor(sorted.length * 0.1);
+            const d9Index = Math.floor(sorted.length * 0.9);
+            const d1 = sorted[d1Index];
+            const d9 = sorted[d9Index];
+            return d1 !== 0 ? d9 / d1 : 999.99;
+        }
+
+        // =====================================================
+        // КЛАСТЕРЛАШ (Ward методи асосида)
+        // =====================================================
+        
+        function assignClusterByIndex(index) {
+            if (index >= 0.70) return 1;
+            if (index >= 0.50) return 2;
+            if (index >= 0.35) return 3;
+            return 4;
+        }
+
+        // =====================================================
+        // МАЪЛУМОТЛАР БИЛАН ИШЛАШ
+        // =====================================================
+        
+        function collectData() {
+            const data = {};
+            document.querySelectorAll('.indicator-input').forEach(input => {
+                const indicator = input.dataset.indicator;
+                const district = input.dataset.district;
+                const value = parseFloat(input.value) || 0;
+                
+                if (!data[indicator]) {
+                    data[indicator] = {};
+                }
+                data[indicator][district] = value;
+            });
+            return data;
+        }
+        
+        function loadSampleData() {
+            const year = parseInt(document.getElementById('analysisYear').value);
+            const growthFactor = 1 + (year - 2014) * 0.08;
+            
+            const sampleData = {};
+            
+            for (const [direction, indicators] of Object.entries(INDICATORS)) {
+                for (const code of Object.keys(indicators)) {
+                    sampleData[code] = {};
+                    
+                    for (let i = 0; i < DISTRICTS.length; i++) {
+                        const district = DISTRICTS[i];
+                        let base;
+                        
+                        // Туманларга хос қийматлар
+                        const districtFactor = i < 2 ? 1.5 : (i < 6 ? 1.2 : (i < 10 ? 0.9 : 0.7));
+                        
+                        if (code === 'D3' || code === 'S3') {
+                            base = (3 + Math.random() * 5) / districtFactor;
+                        } else if (code.startsWith('D')) {
+                            base = (10 + Math.random() * 20) * districtFactor;
+                        } else if (code.startsWith('I')) {
+                            base = (20 + Math.random() * 80) * districtFactor;
+                        } else {
+                            base = (100 + Math.random() * 900) * districtFactor;
+                        }
+                        
+                        sampleData[code][district] = Math.round(base * growthFactor * 100) / 100;
+                    }
+                }
+            }
+            
+            document.querySelectorAll('.indicator-input').forEach(input => {
+                const indicator = input.dataset.indicator;
+                const district = input.dataset.district;
+                if (sampleData[indicator] && sampleData[indicator][district] !== undefined) {
+                    input.value = sampleData[indicator][district];
+                }
+            });
+            
+            alert(`✅ ${year} йил учун намунавий маълумотлар юкланди!`);
+        }
+        
+        function clearAllData() {
+            document.querySelectorAll('.indicator-input').forEach(input => {
+                input.value = '';
+            });
+            alert('🗑️ Барча маълумотлар тозаланди!');
+        }
+
+        // =====================================================
+        // АСОСИЙ ТАҲЛИЛ
+        // =====================================================
+        
+        function runAnalysis() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            
+            setTimeout(() => {
+                try {
+                    const data = collectData();
+                    const year = document.getElementById('analysisYear').value;
+                    
+                    // Маълумотлар мавжудлигини текшириш
+                    let hasData = false;
+                    for (const indicator in data) {
+                        for (const district in data[indicator]) {
+                            if (data[indicator][district] > 0) {
+                                hasData = true;
+                                break;
+                            }
+                        }
+                        if (hasData) break;
+                    }
+                    
+                    if (!hasData) {
+                        alert('⚠️ Илтимос, камида битта индикатор учун маълумот киритинг!');
+                        document.getElementById('loadingOverlay').style.display = 'none';
+                        return;
+                    }
+                    
+                    const allIndicatorCodes = Object.values(INDICATORS).flatMap(d => Object.keys(d));
+                    const reverseIndicators = ['D3', 'S3'];
+                    
+                    // 1. Тенгсизлик кўрсаткичлари
+                    const inequalityResults = [];
+                    for (const code of allIndicatorCodes) {
+                        if (data[code]) {
+                            const values = DISTRICTS.map(d => data[code][d] || 0);
+                            if (values.some(v => v > 0)) {
+                                inequalityResults.push({
+                                    indicator: code,
+                                    cv: Math.round(calculateCV(values) * 100) / 100,
+                                    gini: Math.round(calculateGini(values) * 10000) / 10000,
+                                    theil: Math.round(calculateTheil(values) * 10000) / 10000,
+                                    decile: Math.round(calculateDecile(values) * 100) / 100
+                                });
+                            }
+                        }
+                    }
+                    
+                    // 2. Нормаллаштириш ва комплекс индекс
+                    const normalizedData = {};
+                    for (const code of allIndicatorCodes) {
+                        if (data[code]) {
+                            const values = DISTRICTS.map(d => data[code][d] || 0);
+                            const min = Math.min(...values);
+                            const max = Math.max(...values);
+                            const range = max - min || 1;
+                            
+                            normalizedData[code] = {};
+                            for (let i = 0; i < DISTRICTS.length; i++) {
+                                let normalized = (values[i] - min) / range;
+                                if (reverseIndicators.includes(code)) {
+                                    normalized = 1 - normalized;
+                                }
+                                normalizedData[code][DISTRICTS[i]] = normalized;
+                            }
+                        }
+                    }
+                    
+                    // Йўналишлар бўйича индекслар
+                    const directionIndices = {};
+                    for (const [direction, indicators] of Object.entries(INDICATORS)) {
+                        directionIndices[direction] = {};
+                        const codes = Object.keys(indicators);
+                        
+                        for (const district of DISTRICTS) {
+                            let sum = 0, count = 0;
+                            for (const code of codes) {
+                                if (normalizedData[code] && normalizedData[code][district] !== undefined) {
+                                    sum += normalizedData[code][district];
+                                    count++;
+                                }
+                            }
+                            directionIndices[direction][district] = count > 0 ? sum / count : 0;
+                        }
+                    }
+                    
+                    // Комплекс индекс
+                    const compositeIndex = {};
+                    for (const district of DISTRICTS) {
+                        let sum = 0, count = 0;
+                        for (const direction of Object.keys(INDICATORS)) {
+                            if (directionIndices[direction][district] !== undefined) {
+                                sum += directionIndices[direction][district];
+                                count++;
+                            }
+                        }
+                        compositeIndex[district] = count > 0 ? sum / count : 0;
+                    }
+                    
+                    // Рейтинг
+                    const ranking = DISTRICTS
+                        .map(d => ({
+                            district: d, 
+                            index: Math.round(compositeIndex[d] * 10000) / 10000,
+                            economic: Math.round((directionIndices["ИҚТИСОДИЙ"][d] || 0) * 10000) / 10000,
+                            social: Math.round((directionIndices["ИЖТИМОИЙ"][d] || 0) * 10000) / 10000,
+                            demographic: Math.round((directionIndices["ДЕМОГРАФИК"][d] || 0) * 10000) / 10000,
+                            infrastructure: Math.round((directionIndices["ИНФРАТУЗИЛМА"][d] || 0) * 10000) / 10000
+                        }))
+                        .sort((a, b) => b.index - a.index)
+                        .map((item, idx) => ({...item, rank: idx + 1, cluster: assignClusterByIndex(item.index)}));
+                    
+                    // 3. Кластерлар
+                    const clusters = {1: [], 2: [], 3: [], 4: []};
+                    for (const item of ranking) {
+                        clusters[item.cluster].push(item);
+                    }
+                    
+                    // 4. Умумий статистика
+                    const avgCV = inequalityResults.length > 0 
+                        ? Math.round(inequalityResults.reduce((s, r) => s + r.cv, 0) / inequalityResults.length * 100) / 100 
+                        : 0;
+                    const avgGini = inequalityResults.length > 0 
+                        ? Math.round(inequalityResults.reduce((s, r) => s + r.gini, 0) / inequalityResults.length * 10000) / 10000 
+                        : 0;
+                    
+                    let level, levelColor;
+                    if (avgCV < 20) { level = 'ПАСТ'; levelColor = 'success'; }
+                    else if (avgCV < 35) { level = 'ЎРТАЧА'; levelColor = 'warning'; }
+                    else { level = 'ЮҚОРИ'; levelColor = 'danger'; }
+                    
+                    const results = {
+                        year,
+                        inequality: inequalityResults,
+                        ranking,
+                        clusters,
+                        summary: {
+                            avgCV, avgGini, level, levelColor,
+                            topDistricts: ranking.slice(0, 3),
+                            bottomDistricts: ranking.slice(-3)
+                        }
+                    };
+                    
+                    // Натижаларни кўрсатиш
+                    displayResults(results);
+                    displayClusters(results);
+                    displayStrategies(results);
+                    
+                    window.lastResults = results;
+                    
+                    // Натижалар табига ўтиш
+                    bootstrap.Tab.getOrCreateInstance(document.querySelector('a[href="#resultsSection"]')).show();
+                    
+                } catch (error) {
+                    alert('❌ Хатолик: ' + error.message);
+                    console.error(error);
+                }
+                
+                document.getElementById('loadingOverlay').style.display = 'none';
+            }, 500);
+        }
+
+        // =====================================================
+        // НАТИЖАЛАРНИ КЎРСАТИШ
+        // =====================================================
+        
+        function displayResults(result) {
+            const container = document.getElementById('resultsContent');
+            
+            let html = `
+                <div class="row mb-4">
+                    <div class="col-md-3 col-6">
+                        <div class="result-card">
+                            <div class="value">${result.summary.avgCV}%</div>
+                            <div class="label">Ўртача CV</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="result-card">
+                            <div class="value">${result.summary.avgGini}</div>
+                            <div class="label">Ўртача Жини</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="result-card">
+                            <div class="value text-${result.summary.levelColor}">${result.summary.level}</div>
+                            <div class="label">Тенгсизлик даражаси</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="result-card">
+                            <div class="value">${result.year}</div>
+                            <div class="label">Таҳлил йили</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card border-success">
+                            <div class="card-header bg-success text-white">
+                                <i class="bi bi-trophy-fill"></i> Энг юқори ривожланган
+                            </div>
+                            <div class="card-body">
+                                ${result.summary.topDistricts.map((d, i) => `
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span><strong>${i+1}.</strong> ${d.district}</span>
+                                        <span class="badge bg-success">${d.index}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                <i class="bi bi-exclamation-triangle-fill"></i> Энг паст ривожланган
+                            </div>
+                            <div class="card-body">
+                                ${result.summary.bottomDistricts.map((d, i) => `
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span><strong>${result.ranking.length - 2 + i}.</strong> ${d.district}</span>
+                                        <span class="badge bg-danger">${d.index}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="bi bi-table"></i> Тенгсизлик кўрсаткичлари
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Индикатор</th>
+                                        <th>CV (%)</th>
+                                        <th>Жини</th>
+                                        <th>Тейл</th>
+                                        <th>Децил</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${result.inequality.map(row => `
+                                        <tr>
+                                            <td><strong>${row.indicator}</strong></td>
+                                            <td class="${row.cv > 35 ? 'text-danger' : row.cv > 20 ? 'text-warning' : 'text-success'}">${row.cv}</td>
+                                            <td>${row.gini}</td>
+                                            <td>${row.theil}</td>
+                                            <td>${row.decile}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="bi bi-award-fill"></i> Туманлар рейтинги (комплекс индекс)
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Туман</th>
+                                        <th>Индекс</th>
+                                        <th>Иқтисодий</th>
+                                        <th>Ижтимоий</th>
+                                        <th>Демографик</th>
+                                        <th>Инфратузилма</th>
+                                        <th>Кластер</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${result.ranking.map(row => `
+                                        <tr>
+                                            <td><strong>${row.rank}</strong></td>
+                                            <td>${row.district}</td>
+                                            <td><strong>${row.index}</strong></td>
+                                            <td>${row.economic}</td>
+                                            <td>${row.social}</td>
+                                            <td>${row.demographic}</td>
+                                            <td>${row.infrastructure}</td>
+                                            <td><span class="cluster-badge cluster-${row.cluster}">${row.cluster}</span></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center no-print">
+                    <button class="btn btn-success" onclick="exportToCSV()">
+                        <i class="bi bi-download"></i> CSV юклаш
+                    </button>
+                    <button class="btn btn-primary" onclick="window.print()">
+                        <i class="bi bi-printer"></i> Чоп этиш
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        // =====================================================
+        // КЛАСТЕРЛАРНИ КЎРСАТИШ
+        // =====================================================
+        
+        function displayClusters(result) {
+            const container = document.getElementById('clusterContent');
+            
+            let html = '<div class="row">';
+            
+            for (let clusterNum = 1; clusterNum <= 4; clusterNum++) {
+                const clusterData = STRATEGIC_RECOMMENDATIONS[clusterNum];
+                const districts = result.clusters[clusterNum] || [];
+                
+                html += `
+                    <div class="col-md-6 mb-4">
+                        <div class="cluster-card">
+                            <div class="card-header cluster-header-${clusterNum} p-3">
+                                <h5 class="mb-1">
+                                    <i class="bi bi-${clusterNum === 1 ? 'trophy' : clusterNum === 2 ? 'graph-up' : clusterNum === 3 ? 'dash-circle' : 'exclamation-triangle'}-fill"></i>
+                                    Кластер ${clusterNum}: ${clusterData.title}
+                                </h5>
+                                <small>Индекс диапазони: ${clusterData.indexRange}</small>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="text-muted mb-2">Хусусиятлари:</h6>
+                                <ul class="small mb-3">
+                                    ${clusterData.characteristics.map(c => `<li>${c}</li>`).join('')}
+                                </ul>
+                                
+                                <h6 class="text-muted mb-2">Туманлар (${districts.length} та):</h6>
+                                ${districts.length > 0 ? `
+                                    <div class="d-flex flex-wrap gap-1">
+                                        ${districts.map(d => `
+                                            <span class="badge bg-light text-dark border">
+                                                <i class="bi bi-geo-alt"></i> ${d.district} 
+                                                <small>(${d.index})</small>
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                ` : '<p class="text-muted small">Бу кластерда туман йўқ</p>'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            
+            // Кластерлар статистикаси
+            html += `
+                <div class="card">
+                    <div class="card-header">
+                        <i class="bi bi-pie-chart-fill"></i> Кластерлар статистикаси
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            ${[1,2,3,4].map(num => `
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="p-3 rounded" style="background: ${STRATEGIC_RECOMMENDATIONS[num].color}20;">
+                                        <h3 class="mb-0" style="color: ${STRATEGIC_RECOMMENDATIONS[num].color}">
+                                            ${(result.clusters[num] || []).length}
+                                        </h3>
+                                        <small>Кластер ${num}</small>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        // =====================================================
+        // СТРАТЕГИК ТАВСИЯЛАРНИ КЎРСАТИШ
+        // =====================================================
+        
+        function displayStrategies(result) {
+            const container = document.getElementById('strategyContent');
+            
+            let html = '';
+            
+            // Ҳар бир кластер учун тавсиялар
+            for (let clusterNum = 1; clusterNum <= 4; clusterNum++) {
+                const clusterData = STRATEGIC_RECOMMENDATIONS[clusterNum];
+                const districts = result.clusters[clusterNum] || [];
+                
+                if (districts.length === 0) continue;
+                
+                html += `
+                    <div class="card mb-4">
+                        <div class="card-header cluster-header-${clusterNum}">
+                            <h5 class="mb-0">
+                                <i class="bi bi-lightbulb-fill"></i> 
+                                Кластер ${clusterNum}: ${clusterData.title}
+                            </h5>
+                            <small>Туманлар: ${districts.map(d => d.district).join(', ')}</small>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><span class="strategy-icon economic"><i class="bi bi-currency-dollar"></i></span> Иқтисодий тавсиялар</h6>
+                                    ${clusterData.recommendations.economic.map(r => `
+                                        <div class="recommendation-card economic">
+                                            <strong>${r.action}</strong>
+                                            <br><small class="text-success"><i class="bi bi-arrow-right"></i> ${r.result}</small>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><span class="strategy-icon social"><i class="bi bi-people-fill"></i></span> Ижтимоий тавсиялар</h6>
+                                    ${clusterData.recommendations.social.map(r => `
+                                        <div class="recommendation-card social">
+                                            <strong>${r.action}</strong>
+                                            <br><small class="text-info"><i class="bi bi-arrow-right"></i> ${r.result}</small>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h6><span class="strategy-icon demographic"><i class="bi bi-person-lines-fill"></i></span> Демографик тавсиялар</h6>
+                                    ${clusterData.recommendations.demographic.map(r => `
+                                        <div class="recommendation-card demographic">
+                                            <strong>${r.action}</strong>
+                                            <br><small class="text-purple"><i class="bi bi-arrow-right"></i> ${r.result}</small>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><span class="strategy-icon infrastructure"><i class="bi bi-building"></i></span> Инфратузилма тавсиялар</h6>
+                                    ${clusterData.recommendations.infrastructure.map(r => `
+                                        <div class="recommendation-card infrastructure">
+                                            <strong>${r.action}</strong>
+                                            <br><small class="text-warning"><i class="bi bi-arrow-right"></i> ${r.result}</small>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Умумвилоят тавсиялари
+            html += `
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-globe"></i> УМУМВИЛОЯТ БЎЙИЧА ТАВСИЯЛАР
+                        </h5>
+                        <small>Ҳудудий тенгсизликни камайтириш механизмлари</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            ${REGIONAL_RECOMMENDATIONS.map((r, i) => `
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <span class="badge bg-primary me-2">${i + 1}</span>
+                                        <div>
+                                            <strong>${r.title}</strong>
+                                            <br><small class="text-muted">${r.desc}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Чоп этиш тугмаси
+            html += `
+                <div class="text-center mt-4 no-print">
+                    <button class="btn btn-primary btn-lg" onclick="window.print()">
+                        <i class="bi bi-printer-fill"></i> Тавсияларни чоп этиш
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        // =====================================================
+        // ЭКСПОРТ
+        // =====================================================
+        
+        function exportToCSV() {
+            if (!window.lastResults) {
+                alert('Аввал таҳлилни бажаринг!');
+                return;
+            }
+            
+            const result = window.lastResults;
+            let csv = 'ҲУДУДИЙ ТЕНГСИЗЛИК ТАҲЛИЛИ НАТИЖАЛАРИ\n';
+            csv += `Таҳлил йили: ${result.year}\n\n`;
+            
+            csv += 'ТЕНГСИЗЛИК КЎРСАТКИЧЛАРИ\n';
+            csv += 'Индикатор,CV (%),Жини,Тейл,Децил\n';
+            for (const row of result.inequality) {
+                csv += `${row.indicator},${row.cv},${row.gini},${row.theil},${row.decile}\n`;
+            }
+            
+            csv += '\nТУМАНЛАР РЕЙТИНГИ\n';
+            csv += 'Рейтинг,Туман,Комплекс индекс,Иқтисодий,Ижтимоий,Демографик,Инфратузилма,Кластер\n';
+            for (const row of result.ranking) {
+                csv += `${row.rank},${row.district},${row.index},${row.economic},${row.social},${row.demographic},${row.infrastructure},${row.cluster}\n`;
+            }
+            
+            csv += '\nКЛАСТЕРЛАР\n';
+            for (let i = 1; i <= 4; i++) {
+                const districts = result.clusters[i] || [];
+                csv += `Кластер ${i}: ${districts.map(d => d.district).join('; ')}\n`;
+            }
+            
+            const blob = new Blob(['\ufeff' + csv], {type: 'text/csv;charset=utf-8;'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `hududiy_tengsizlik_${result.year}.csv`;
+            link.click();
+        }
+
+        // =====================================================
+        // БОШЛАШ
+        // =====================================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            generateForms();
+        });
+    </script>
+</body>
+</html>
